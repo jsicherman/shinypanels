@@ -1,30 +1,25 @@
-#' Box like component
+#' Title
 #'
-#' @param title title for the box
-#' @param collapsed defines initial state
-#' @param color color name as defined in custom css
-#' @param ... html list contents for the panel
+#' @param ...
+#' @param title
+#' @param collapsed
+#' @param color
 #'
-#' @return None
-#'
-#' @import htmltools
-#' @import glue
-#' @examples
-#' box()
-#'
+#' @return
 #' @export
-box <- function(..., title = NULL, collapsed = TRUE, color = "") {
+#'
+#' @examples
+box <- function(..., title = NULL, collapsed = T, color = '') {
+  svgArrow <- function(color) {
+    HTML(glue('<svg class="box-collapsible-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+  <path d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"/></svg>'))
+  }
 
   contents <- rlang::dots_list(...)
   state <- ifelse(collapsed, '', 'active')
 
-  # shiny::div(
-  #   l,
-  div(class="box-collapsible",
-      tags$button(class=glue("box-collapsible-trigger {state}"),  span(title),
-                  svgArrow()),
-      div(class=glue("box-collapsible-content {state}"),
-          div(contents)
-      )
+  div(class = 'box-collapsible',
+      tags$button(class = glue('box-collapsible-trigger {state}'), span(title), svgArrow()),
+      div(class = glue('box-collapsible-content {state}'), div(contents))
   )
 }
