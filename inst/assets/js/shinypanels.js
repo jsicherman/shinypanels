@@ -55,17 +55,17 @@ function updatePanels() {
 
   $('.' + layoutSettings.boxCollapsibleClass).each(function() {
     if($(this).next().hasClass(layoutSettings.panelActiveClass))
-      $(this).next().css('maxHeight', $(this).next().prop('scrollHeight') + 'px');
+      $(this).next().css('max-height', $(this).next().prop('scrollHeight') + 'px');
 
     $(this).off();
     $(this).click(function() {
       $(this).toggleClass(layoutSettings.panelActiveClass);
       $(this).next().toggleClass(layoutSettings.panelActiveClass);
 
-      if($(this).next().css('maxHeight'))
-        $(this).next().css('maxHeight', '');
+      if($(this).next().css('max-height'))
+        $(this).next().css('max-height', '');
       else
-        $(this).next().css('maxHeight', $(this).next().prop('scrollHeight') + 'px');
+        $(this).next().css('max-height', $(this).next().prop('scrollHeight') + 'px');
     });
   });
 }
